@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/spacing_md">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingVertical="@dimen/spacing_xs"
+            android:text="PREFERENCES"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:elevation="2dp"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_md">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+                <ImageView
+                    android:id="@+id/ivWeightUnitIcon"
+                    android:layout_width="@dimen/icon_md"
+                    android:layout_height="@dimen/icon_md"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="Weight unit"
+                    android:src="@drawable/ic_dumbbell"
+                    app:tint="@color/primary" />
+                <TextView
+                    android:id="@+id/tvWeightUnitTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/ivWeightUnitIcon"
+                    android:text="Weight Unit"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvWeightUnitTitle"
+                    android:layout_marginStart="40dp"
+                    android:layout_toRightOf="@id/ivWeightUnitIcon"
+                    android:text="Currently: Kilograms (kg)"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_tag"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:text="kg"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+                <ImageView
+                    android:id="@+id/ivDarkModeIcon"
+                    android:layout_width="@dimen/icon_md"
+                    android:layout_height="@dimen/icon_md"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="Dark mode"
+                    android:src="@drawable/ic_chart"
+                    app:tint="@color/primary" />
+                <TextView
+                    android:id="@+id/tvDarkModeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/ivDarkModeIcon"
+                    android:text="Dark Mode"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvDarkModeTitle"
+                    android:layout_marginStart="40dp"
+                    android:layout_toRightOf="@id/ivDarkModeIcon"
+                    android:text="Change app appearance"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:checked="false"
+                    android:thumbTint="@color/primary"
+                    android:trackTint="@color/accent_light" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+                <ImageView
+                    android:id="@+id/ivNotifIcon"
+                    android:layout_width="@dimen/icon_md"
+                    android:layout_height="@dimen/icon_md"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="Notifications"
+                    android:src="@drawable/ic_notification"
+                    app:tint="@color/primary" />
+                <TextView
+                    android:id="@+id/tvNotifTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/ivNotifIcon"
+                    android:text="Push Notifications"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvNotifTitle"
+                    android:layout_marginStart="40dp"
+                    android:layout_toRightOf="@id/ivNotifIcon"
+                    android:text="Rest timer &amp; workout reminders"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:checked="true"
+                    android:thumbTint="@color/primary"
+                    android:trackTint="@color/accent_light" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+                <ImageView
+                    android:id="@+id/ivRestTimerIcon"
+                    android:layout_width="@dimen/icon_md"
+                    android:layout_height="@dimen/icon_md"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="Rest timer"
+                    android:src="@drawable/ic_timer"
+                    app:tint="@color/primary" />
+                <TextView
+                    android:id="@+id/tvRestTimerTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/ivRestTimerIcon"
+                    android:text="Default Rest Timer"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvRestTimerTitle"
+                    android:layout_marginStart="40dp"
+                    android:layout_toRightOf="@id/ivRestTimerIcon"
+                    android:text="Set between-set rest duration"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="90s  ›"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingVertical="@dimen/spacing_xs"
+            android:text="ACCOUNT"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_sm"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:background="@drawable/bg_card"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_md">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+                <ImageView
+                    android:id="@+id/ivBackupIcon"
+                    android:layout_width="@dimen/icon_md"
+                    android:layout_height="@dimen/icon_md"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="Backup"
+                    android:src="@drawable/ic_trophy"
+                    app:tint="@color/primary" />
+                <TextView
+                    android:id="@+id/tvBackupTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/ivBackupIcon"
+                    android:text="Backup Data"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvBackupTitle"
+                    android:layout_marginStart="40dp"
+                    android:layout_toRightOf="@id/ivBackupIcon"
+                    android:text="Last backup: Today 9:00 AM"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="›"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_lg" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="64dp">
+                <ImageView
+                    android:id="@+id/ivLogoutIcon"
+                    android:layout_width="@dimen/icon_md"
+                    android:layout_height="@dimen/icon_md"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="Logout"
+                    android:src="@drawable/ic_fire"
+                    app:tint="@color/error" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="40dp"
+                    android:layout_toRightOf="@id/ivLogoutIcon"
+                    android:text="Log Out"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+    </LinearLayout>
+</ScrollView>

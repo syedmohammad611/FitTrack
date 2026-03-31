@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FitTrack</string>
+    <string name="app_tagline">Track. Train. Transform.</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_log">Log</string>
+    <string name="nav_history">History</string>
+    <string name="nav_analytics">Analytics</string>
+    <string name="nav_profile">Profile</string>
+    <string name="dashboard_greeting">Good Morning, Alex! 💪</string>
+    <string name="dashboard_subtitle">Ready for today\'s session?</string>
+    <string name="weekly_volume">Weekly Volume</string>
+    <string name="total_sets">Total Sets</string>
+    <string name="active_days">Active Days</string>
+    <string name="start_workout">Start Workout</string>
+    <string name="recent_workouts">Recent Workouts</string>
+    <string name="view_all">View All</string>
+    <string name="stat_volume">8,450 kg</string>
+    <string name="stat_sets">42 sets</string>
+    <string name="stat_active_days">5/7 days</string>
+    <string name="stat_prs">3 PRs</string>
+    <string name="log_title">Log Workout</string>
+    <string name="add_set">+ Add Set</string>
+    <string name="add_exercise">+ Add Exercise</string>
+    <string name="finish_workout">Finish Workout</string>
+    <string name="exercise_list_title">Select Exercise</string>
+    <string name="history_title">Workout History</string>
+    <string name="analytics_title">Progress Analytics</string>
+    <string name="profile_title">My Profile</string>
+    <string name="user_name">Alex Johnson</string>
+    <string name="user_handle">@alexjlifts</string>
+    <string name="settings_title">Settings</string>
+    <string name="unit_kg">Kilograms (kg)</string>
+    <string name="unit_lbs">Pounds (lbs)</string>
+    <string name="sample_workout_1">Push Day — Chest &amp; Triceps</string>
+    <string name="sample_workout_2">Pull Day — Back &amp; Biceps</string>
+    <string name="sample_workout_3">Leg Day — Quads &amp; Glutes</string>
+    <string name="pr_bench">Bench Press PR: 100 kg</string>
+    <string name="pr_squat">Squat PR: 140 kg</string>
+    <string name="pr_deadlift">Deadlift PR: 160 kg</string>
+</resources>

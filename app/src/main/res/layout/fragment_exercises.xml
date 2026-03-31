@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/spacing_md">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Exercise"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_md">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_input_field"
+                android:gravity="center_vertical"
+                android:hint="Search exercises..."
+                android:paddingHorizontal="@dimen/spacing_md"
+                android:textColorHint="@color/text_hint"
+                android:textSize="@dimen/text_body" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingBottom="@dimen/spacing_sm"
+            android:text="Categories"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_md"
+            android:textStyle="bold" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:rowCount="5"
+            android:useDefaultMargins="true">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/exercise_card_height"
+                android:layout_columnSpan="2"
+                android:layout_gravity="fill"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:background="@drawable/bg_card_blue"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/spacing_md">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_xl"
+                    android:layout_height="@dimen/icon_xl"
+                    android:layout_marginEnd="@dimen/spacing_md"
+                    android:src="@drawable/ic_dumbbell"
+                    app:tint="#FFFFFF" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full Body Workout"
+                        android:textColor="@color/text_on_primary"
+                        android:textSize="@dimen/text_lg"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="54 exercises · Compound lifts"
+                        android:textColor="#BBDEFB"
+                        android:textSize="@dimen/text_sm" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/exercise_card_height"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_dumbbell"
+                    app:tint="@color/chest_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Chest"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18 exercises"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/exercise_card_height"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_dumbbell"
+                    app:tint="@color/back_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Back"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22 exercises"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/exercise_card_height"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_dumbbell"
+                    app:tint="@color/legs_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Legs"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="25 exercises"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/exercise_card_height"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_dumbbell"
+                    app:tint="@color/shoulders_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Shoulders"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14 exercises"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="102dp"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_dumbbell"
+                    app:tint="@color/arms_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Arms"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20 exercises"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/exercise_card_height"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_lg"
+                    android:layout_height="@dimen/icon_lg"
+                    android:src="@drawable/ic_fire"
+                    app:tint="@color/core_color" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Core"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16 exercises"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+
+        </GridLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_md">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Log Workout"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tag_selected"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/spacing_sm"
+                android:paddingVertical="4dp">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_timer"
+                    app:tint="@color/text_on_primary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:42:18"
+                    android:textColor="@color/text_on_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_md">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/spacing_md"
+                android:paddingBottom="@dimen/spacing_sm">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Quick Start Templates"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_md"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See all"
+                    android:textColor="@color/primary_light"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/spacing_md"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/spacing_md">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/carousel_card_width"
+                        android:layout_height="@dimen/carousel_card_height"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:background="@drawable/bg_card_blue"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_md">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Push Day" android:textColor="@color/text_on_primary"
+                            android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp" android:text="Chest · Shoulders · Triceps"
+                            android:textColor="#BBDEFB" android:textSize="@dimen/text_sm"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp" android:text="6 exercises"
+                            android:textColor="#E3F2FD" android:textSize="@dimen/text_sm"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/carousel_card_width"
+                        android:layout_height="@dimen/carousel_card_height"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:background="@drawable/bg_card"
+                        android:elevation="@dimen/card_elevation"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_md">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Pull Day" android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp" android:text="Back · Biceps · Rear Delts"
+                            android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp" android:text="7 exercises"
+                            android:textColor="@color/primary" android:textSize="@dimen/text_sm"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/carousel_card_width"
+                        android:layout_height="@dimen/carousel_card_height"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:background="@drawable/bg_card"
+                        android:elevation="@dimen/card_elevation"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_md">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Leg Day" android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp" android:text="Quads · Hamstrings · Glutes"
+                            android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp" android:text="8 exercises"
+                            android:textColor="@color/primary" android:textSize="@dimen/text_sm"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/carousel_card_width"
+                        android:layout_height="@dimen/carousel_card_height"
+                        android:layout_marginEnd="@dimen/spacing_sm"
+                        android:background="@drawable/bg_card"
+                        android:elevation="@dimen/card_elevation"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_md">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Shoulder &amp; Core" android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp" android:text="OHP · Lateral Raises · Abs"
+                            android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp" android:text="5 exercises"
+                            android:textColor="@color/primary" android:textSize="@dimen/text_sm"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/carousel_card_width"
+                        android:layout_height="@dimen/carousel_card_height"
+                        android:background="@drawable/bg_card"
+                        android:elevation="@dimen/card_elevation"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_md">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Full Body HIIT" android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp" android:text="Cardio · Compound Lifts"
+                            android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp" android:text="10 exercises"
+                            android:textColor="@color/primary" android:textSize="@dimen/text_sm"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:text="Today's Session"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_md"
+                android:textStyle="bold" />
+
+            <include layout="@layout/item_workout_card" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/card_padding">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="@dimen/spacing_sm"
+                    android:src="@drawable/ic_dumbbell" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Overhead Press"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_body"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3 sets · 10 reps · 60 kg"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_sm" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✓"
+                    android:textColor="@color/success"
+                    android:textSize="@dimen/text_xl"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:background="@drawable/bg_tag"
+                android:gravity="center"
+                android:text="+ Add Exercise"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_body"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_button_primary"
+                android:gravity="center"
+                android:text="Finish Workout"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/text_md"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="80dp" />
+    </LinearLayout>
+</ScrollView>

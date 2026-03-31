@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/spacing_md">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Workout History"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_md">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_blue"
+                android:gravity="center"
+                android:layout_marginEnd="6dp"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="42"
+                    android:textColor="@color/text_on_primary"
+                    android:textSize="@dimen/text_xxl"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sessions"
+                    android:textColor="#BBDEFB"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_card_blue"
+                android:gravity="center"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="186k"
+                    android:textColor="@color/text_on_primary"
+                    android:textSize="@dimen/text_xxl"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total kg"
+                    android:textColor="#BBDEFB"
+                    android:textSize="@dimen/text_sm" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingBottom="@dimen/spacing_sm"
+            android:text="Session Log"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_md"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:elevation="@dimen/card_elevation"
+            android:layout_marginHorizontal="@dimen/spacing_md"
+            android:shrinkColumns="1"
+            android:stretchColumns="1">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/table_header_height"
+                android:background="@color/primary"
+                android:gravity="center_vertical">
+                <TextView android:padding="@dimen/spacing_sm" android:text="Date"
+                    android:textColor="@color/text_on_primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="Workout"
+                    android:textColor="@color/text_on_primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="Time"
+                    android:textColor="@color/text_on_primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="Vol (kg)"
+                    android:textColor="@color/text_on_primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+            </TableRow>
+
+            <TableRow android:layout_height="@dimen/table_row_height" android:background="@color/surface" android:gravity="center_vertical">
+                <TextView android:padding="@dimen/spacing_sm" android:text="Jun 4" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="Push Day — Chest &amp; Triceps" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="55m" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="3,200" android:textColor="@color/primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+            </TableRow>
+
+            <View android:layout_width="match_parent" android:layout_height="@dimen/divider_height" android:background="@color/divider"/>
+
+            <TableRow android:layout_height="@dimen/table_row_height" android:background="@color/surface_variant" android:gravity="center_vertical">
+                <TextView android:padding="@dimen/spacing_sm" android:text="Jun 3" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="Pull Day — Back &amp; Biceps" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="62m" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="2,800" android:textColor="@color/primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+            </TableRow>
+
+            <View android:layout_width="match_parent" android:layout_height="@dimen/divider_height" android:background="@color/divider"/>
+
+            <TableRow android:layout_height="@dimen/table_row_height" android:background="@color/surface" android:gravity="center_vertical">
+                <TextView android:padding="@dimen/spacing_sm" android:text="Jun 2" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="Leg Day — Quads &amp; Glutes" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="70m" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="4,100" android:textColor="@color/primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+            </TableRow>
+
+            <View android:layout_width="match_parent" android:layout_height="@dimen/divider_height" android:background="@color/divider"/>
+
+            <TableRow android:layout_height="@dimen/table_row_height" android:background="@color/surface_variant" android:gravity="center_vertical">
+                <TextView android:padding="@dimen/spacing_sm" android:text="May 31" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="Shoulder &amp; Core" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="48m" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="1,950" android:textColor="@color/primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+            </TableRow>
+
+            <View android:layout_width="match_parent" android:layout_height="@dimen/divider_height" android:background="@color/divider"/>
+
+            <TableRow android:layout_height="@dimen/table_row_height" android:background="@color/surface" android:gravity="center_vertical">
+                <TextView android:padding="@dimen/spacing_sm" android:text="May 30" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="Full Body HIIT" android:textColor="@color/text_primary" android:textSize="@dimen/text_body" android:textStyle="bold"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="35m" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+                <TextView android:padding="@dimen/spacing_sm" android:text="890" android:textColor="@color/primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+            </TableRow>
+
+        </TableLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="80dp" />
+    </LinearLayout>
+</ScrollView>

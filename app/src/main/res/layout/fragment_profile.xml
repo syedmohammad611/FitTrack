@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/spacing_md">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/text_lg"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_blue"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/spacing_xl"
+            android:paddingHorizontal="@dimen/spacing_md">
+            <ImageView
+                android:layout_width="@dimen/avatar_size_xl"
+                android:layout_height="@dimen/avatar_size_xl"
+                android:src="@drawable/ic_avatar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:text="FastLifters"
+                android:textColor="@color/text_on_primary"
+                android:textSize="@dimen/text_xl"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@fastlifters"
+                android:textColor="#BBDEFB"
+                android:textSize="@dimen/text_body" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:background="@drawable/bg_tag"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/spacing_lg"
+                android:text="Edit Profile"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_sm"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            android:elevation="2dp"
+            android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_height="70dp"
+                android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="42" android:textColor="@color/primary"
+                    android:textSize="@dimen/text_xl" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Workouts" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+            </LinearLayout>
+            <View android:layout_width="1dp" android:layout_height="40dp"
+                android:layout_gravity="center_vertical" android:background="@color/divider"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="70dp"
+                android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="3" android:textColor="@color/pr_gold"
+                    android:textSize="@dimen/text_xl" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="PRs This Week" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+            </LinearLayout>
+            <View android:layout_width="1dp" android:layout_height="40dp"
+                android:layout_gravity="center_vertical" android:background="@color/divider"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="70dp"
+                android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="5🔥" android:textColor="@color/chart_orange"
+                    android:textSize="@dimen/text_xl" android:textStyle="bold"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Day Streak" android:textColor="@color/text_secondary" android:textSize="@dimen/text_sm"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:text="Favourite Muscle Groups"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_md"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:padding="@dimen/card_padding">
+
+                <TextView android:id="@+id/tagChest" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag_selected" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Chest"
+                    android:textColor="@color/text_on_primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+                <TextView android:id="@+id/tagBack" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Back"
+                    android:textColor="@color/tag_text" android:textSize="@dimen/text_sm"/>
+                <TextView android:id="@+id/tagLegs" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag_selected" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Legs"
+                    android:textColor="@color/text_on_primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+                <TextView android:id="@+id/tagShoulders" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Shoulders"
+                    android:textColor="@color/tag_text" android:textSize="@dimen/text_sm"/>
+                <TextView android:id="@+id/tagBiceps" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Biceps"
+                    android:textColor="@color/tag_text" android:textSize="@dimen/text_sm"/>
+                <TextView android:id="@+id/tagTriceps" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Triceps"
+                    android:textColor="@color/tag_text" android:textSize="@dimen/text_sm"/>
+                <TextView android:id="@+id/tagCore" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag_selected" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Core"
+                    android:textColor="@color/text_on_primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+                <TextView android:id="@+id/tagCardio" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Cardio"
+                    android:textColor="@color/tag_text" android:textSize="@dimen/text_sm"/>
+                <TextView android:id="@+id/tagStrength" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag_selected" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Strength"
+                    android:textColor="@color/text_on_primary" android:textSize="@dimen/text_sm" android:textStyle="bold"/>
+                <TextView android:id="@+id/tagHypertrophy" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_tag" android:paddingHorizontal="@dimen/tag_padding_h"
+                    android:paddingVertical="@dimen/tag_padding_v" android:text="Hypertrophy"
+                    android:textColor="@color/tag_text" android:textSize="@dimen/text_sm"/>
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/flowTags"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="tagChest,tagBack,tagLegs,tagShoulders,tagBiceps,tagTriceps,tagCore,tagCardio,tagStrength,tagHypertrophy"
+                    app:flow_horizontalGap="8dp"
+                    app:flow_verticalGap="8dp"
+                    app:flow_wrapMode="chain"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:text="Workout Goals"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_md"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🎯 Bench Press 120 kg by Dec 2025"
+                    android:textColor="@color/text_primary" android:textSize="@dimen/text_body"/>
+                <View android:layout_width="match_parent" android:layout_height="@dimen/divider_height"
+                    android:layout_marginVertical="@dimen/spacing_sm" android:background="@color/divider"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🎯 Squat 180 kg by Mar 2026"
+                    android:textColor="@color/text_primary" android:textSize="@dimen/text_body"/>
+                <View android:layout_width="match_parent" android:layout_height="@dimen/divider_height"
+                    android:layout_marginVertical="@dimen/spacing_sm" android:background="@color/divider"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🎯 5 workouts per week consistently"
+                    android:textColor="@color/text_primary" android:textSize="@dimen/text_body"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="80dp" />
+    </LinearLayout>
+</ScrollView>
