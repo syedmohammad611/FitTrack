@@ -23,6 +23,38 @@
             android:textStyle="bold" />
     </LinearLayout>
 
+    <!-- Search Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_md"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/etSearchWorkout"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_search_input"
+            android:hint="Search by workout name"
+            android:paddingStart="@dimen/spacing_md"
+            android:paddingEnd="@dimen/spacing_md"
+            android:inputType="text"
+            android:textSize="@dimen/text_md"
+            android:textColorHint="@color/text_secondary" />
+
+        <Button
+            android:id="@+id/btnClearSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:text="Clear"
+            android:textSize="@dimen/text_sm"
+            android:paddingHorizontal="@dimen/spacing_md" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"

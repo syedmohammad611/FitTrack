@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +16,9 @@ import com.fittrack.app.adapters.WorkoutSessionAdapter
 import com.fittrack.app.models.WorkoutSession
 
 class HistoryFragment : Fragment() {
+    private lateinit var adapter: WorkoutSessionAdapter
+    private lateinit var etSearchWorkout: EditText
+    private lateinit var btnClearSearch: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +34,7 @@ class HistoryFragment : Fragment() {
         val username = arguments?.getString(ARG_USERNAME) ?: "User"
         view.findViewById<TextView>(R.id.tvHistoryTitle).text = "$username's Workout History"
 
+        // Sample workout data
         val sessions = listOf(
             WorkoutSession("Jun 4", "Push Day - Chest & Triceps", "55m", "3,200"),
             WorkoutSession("Jun 3", "Pull Day - Back & Biceps", "62m", "2,800"),
@@ -36,9 +43,26 @@ class HistoryFragment : Fragment() {
             WorkoutSession("May 30", "Full Body HIIT", "35m", "890")
         )
 
+        // Setup RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHistory)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = WorkoutSessionAdapter(sessions)
+        adapter = WorkoutSessionAdapter(sessions)
+        recyclerView.adapter = adapter
+
+        // Setup search UI
+        etSearchWorkout = view.findViewById(R.id.etSearchWorkout)
+        btnClearSearch = view.findViewById(R.id.btnClearSearch)
+
+        // Live search on text change
+        etSearchWorkout.addTextChangedListener { text ->
+            adapter.filter(text?.toString() ?: "")
+        }
+
+        // Clear button clears search
+        btnClearSearch.setOnClickListener {
+            etSearchWorkout.text.clear()
+            adapter.filter("")
+        }
     }
 
     companion object {
@@ -53,4 +77,6 @@ class HistoryFragment : Fragment() {
             }
     }
 }
+
+
 
