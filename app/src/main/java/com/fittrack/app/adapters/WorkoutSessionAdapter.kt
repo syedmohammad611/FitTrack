@@ -9,7 +9,8 @@ import com.fittrack.app.R
 import com.fittrack.app.models.WorkoutSession
 
 class WorkoutSessionAdapter(
-    private val allSessions: List<WorkoutSession>
+    private val allSessions: List<WorkoutSession>,
+    private val onItemClick: (WorkoutSession) -> Unit  // F2: click callback
 ) : RecyclerView.Adapter<WorkoutSessionAdapter.WorkoutSessionViewHolder>() {
 
     private var displayedSessions: List<WorkoutSession> = allSessions
@@ -21,15 +22,11 @@ class WorkoutSessionAdapter(
     }
 
     override fun onBindViewHolder(holder: WorkoutSessionViewHolder, position: Int) {
-        holder.bind(displayedSessions[position])
+        holder.bind(displayedSessions[position], onItemClick)  // pass click
     }
 
     override fun getItemCount(): Int = displayedSessions.size
 
-    /**
-     * Filter sessions by workout name (case-insensitive).
-     * @param query Search query string
-     */
     fun filter(query: String) {
         displayedSessions = if (query.isEmpty()) {
             allSessions
@@ -47,11 +44,13 @@ class WorkoutSessionAdapter(
         private val tvDuration: TextView = itemView.findViewById(R.id.tvDuration)
         private val tvVolume: TextView = itemView.findViewById(R.id.tvVolume)
 
-        fun bind(session: WorkoutSession) {
+        fun bind(session: WorkoutSession, onItemClick: (WorkoutSession) -> Unit) {
             tvDate.text = session.date
             tvWorkout.text = session.workout
             tvDuration.text = session.duration
             tvVolume.text = session.volumeKg
+            // F2: trigger click with the session object
+            itemView.setOnClickListener { onItemClick(session) }
         }
     }
 }

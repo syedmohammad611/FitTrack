@@ -34,7 +34,6 @@ class HistoryFragment : Fragment() {
         val username = arguments?.getString(ARG_USERNAME) ?: "User"
         view.findViewById<TextView>(R.id.tvHistoryTitle).text = "$username's Workout History"
 
-        // Sample workout data
         val sessions = listOf(
             WorkoutSession("Jun 4", "Push Day - Chest & Triceps", "55m", "3,200"),
             WorkoutSession("Jun 3", "Pull Day - Back & Biceps", "62m", "2,800"),
@@ -43,24 +42,29 @@ class HistoryFragment : Fragment() {
             WorkoutSession("May 30", "Full Body HIIT", "35m", "890")
         )
 
-        // Setup RecyclerView
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHistory)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = WorkoutSessionAdapter(sessions)
+
+        // F2: Pass click listener — opens WorkoutDetailFragment with Bundle
+        adapter = WorkoutSessionAdapter(sessions) { session ->
+            val detailFragment = WorkoutDetailFragment.newInstance(session)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, detailFragment)
+                .addToBackStack(null)
+                .commit()
+        }
         recyclerView.adapter = adapter
 
-        // Setup search UI
         etSearchWorkout = view.findViewById(R.id.etSearchWorkout)
         btnClearSearch = view.findViewById(R.id.btnClearSearch)
 
-        // Live search on text change
         etSearchWorkout.addTextChangedListener { text ->
             adapter.filter(text?.toString() ?: "")
         }
 
-        // Clear button clears search
+        // Fixed: setText("") reliably triggers the text watcher to reset filter
         btnClearSearch.setOnClickListener {
-            etSearchWorkout.text.clear()
+            etSearchWorkout.setText("")
             adapter.filter("")
         }
     }
@@ -77,6 +81,3 @@ class HistoryFragment : Fragment() {
             }
     }
 }
-
-
-
