@@ -11,6 +11,7 @@ FitTrack is an Android-based workout logging and exercise analytics application 
 | Maidah Nasir | 23F-0764 |
 | Syed Muhammad | 23F-0559 |
 | Zonia Amer | 23F-0801 |
+| Zahid Khalil | 22F-3573 |
 
 ---
 
@@ -103,6 +104,7 @@ FitTrack/
         fragments/
           DashboardFragment.kt
           HistoryFragment.kt
+          WorkoutDetailFragment.kt
         adapters/
           WorkoutSessionAdapter.kt
         models/
