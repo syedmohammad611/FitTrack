@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <EditText
+        android:id="@+id/etEditDate"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints="postalAddress"
+        android:hint="@string/hint_edit_date"
+        android:importantForAutofill="yes"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etEditWorkout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints="name"
+        android:hint="@string/hint_edit_workout"
+        android:importantForAutofill="yes"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etEditDuration"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:autofillHints="none"
+        android:hint="@string/hint_edit_duration"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etEditVolume"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:autofillHints="none"
+        android:hint="@string/hint_edit_volume"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+</LinearLayout>
