@@ -105,7 +105,16 @@ class WorkoutRepository(context: Context) {
     }
 
     private fun insertSessionInternal(db: android.database.sqlite.SQLiteDatabase, session: WorkoutSession): Long {
+        // Get default user ID (demo_user created during initialization)
+        val defaultUserId = db.rawQuery(
+            "SELECT ${FitTrackDatabaseHelper.COL_USER_ID} FROM ${FitTrackDatabaseHelper.TABLE_USERS} WHERE ${FitTrackDatabaseHelper.COL_USER_USERNAME} = ?",
+            arrayOf("demo_user")
+        ).use { cursor ->
+            if (cursor.moveToFirst()) cursor.getLong(0) else 1L
+        }
+
         val values = ContentValues().apply {
+            put(FitTrackDatabaseHelper.COL_SESSION_USER_ID, defaultUserId)
             put(FitTrackDatabaseHelper.COL_SESSION_DATE, session.date)
             put(FitTrackDatabaseHelper.COL_SESSION_NAME, session.workout)
             put(FitTrackDatabaseHelper.COL_SESSION_DURATION, session.duration)
