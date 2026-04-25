@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.fittrack.app.R
 import com.fittrack.app.fragments.DashboardFragment
 import com.fittrack.app.fragments.HistoryFragment
+import com.fittrack.app.fragments.MotivationFragment
 
 class MainActivity : AppCompatActivity() {
 	private lateinit var username: String
@@ -23,6 +24,10 @@ class MainActivity : AppCompatActivity() {
 
 		findViewById<View>(R.id.nav_history).setOnClickListener {
 			openFragment(HistoryFragment.newInstance(username))
+		}
+
+		findViewById<View>(R.id.nav_motivation).setOnClickListener {
+			openFragment(MotivationFragment.newInstance(username))
 		}
 
 		if (savedInstanceState == null) {
