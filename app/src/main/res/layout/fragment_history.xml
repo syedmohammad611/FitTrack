@@ -55,6 +55,43 @@
             android:paddingHorizontal="@dimen/spacing_md" />
     </LinearLayout>
 
+    <!-- F5: Sorting Options (Dynamic SQL ORDER BY) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/spacing_md"
+        android:paddingBottom="@dimen/spacing_sm"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort by:"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_sm"
+            android:layout_marginEnd="@dimen/spacing_sm"/>
+
+        <Button
+            android:id="@+id/btnSortDate"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Date"
+            android:textSize="10sp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnSortVolume"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Volume"
+            android:textSize="10sp"
+            android:paddingHorizontal="8dp" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

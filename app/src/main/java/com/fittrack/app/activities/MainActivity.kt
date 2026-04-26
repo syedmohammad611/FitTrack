@@ -8,6 +8,7 @@ import com.fittrack.app.R
 import com.fittrack.app.fragments.DashboardFragment
 import com.fittrack.app.fragments.HistoryFragment
 import com.fittrack.app.fragments.MotivationFragment
+import com.fittrack.app.fragments.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 	private lateinit var username: String
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 			openFragment(MotivationFragment.newInstance(username))
 		}
 
+		findViewById<View>(R.id.nav_profile).setOnClickListener {
+			openFragment(ProfileFragment.newInstance(username))
+		}
+
 		if (savedInstanceState == null) {
 			openFragment(DashboardFragment.newInstance(username))
 		}
@@ -41,4 +46,3 @@ class MainActivity : AppCompatActivity() {
 			.commit()
 	}
 }
-

@@ -19,18 +19,9 @@ class WorkoutRepository(context: Context) {
                 cursor.getInt(0)
             }
             if (count == 0) {
-                val sessionId = insertSessionInternal(
-                    db,
-                    WorkoutSession(
-                        id = 0,
-                        date = "Jun 4",
-                        workout = "Push Day - Chest & Triceps",
-                        duration = "55m",
-                        volumeKg = "3,200"
-                    )
-                )
-                insertExercise(db, sessionId, "Bench Press", 4, 8)
-                insertExercise(db, sessionId, "Incline DB Press", 3, 10)
+                insertSessionInternal(db, WorkoutSession(0, "Jun 4", "Push Day - Chest", "55m", "3200"))
+                insertSessionInternal(db, WorkoutSession(0, "Jun 5", "Pull Day - Back", "60m", "2800"))
+                insertSessionInternal(db, WorkoutSession(0, "Jun 6", "Leg Day - Quads", "70m", "4500"))
             }
             db.setTransactionSuccessful()
         } finally {
@@ -44,18 +35,26 @@ class WorkoutRepository(context: Context) {
         }
     }
 
-    fun readSessions(searchQuery: String? = null): List<WorkoutSession> {
+    /**
+     * F5: Dynamic SQL Queries
+     * Executes queries with dynamic selection (LIKE) and dynamic ordering (ORDER BY)
+     */
+    fun readSessions(
+        searchQuery: String? = null,
+        sortBy: String = "id DESC"
+    ): List<WorkoutSession> {
         val db = dbHelper.readableDatabase
-        val selection: String?
-        val selectionArgs: Array<String>?
-        if (searchQuery.isNullOrBlank()) {
-            selection = null
-            selectionArgs = null
-        } else {
+        
+        var selection: String? = null
+        var selectionArgs: Array<String>? = null
+
+        if (!searchQuery.isNullOrBlank()) {
+            // Dynamic Filtering using LIKE
             selection = "${FitTrackDatabaseHelper.COL_SESSION_NAME} LIKE ?"
             selectionArgs = arrayOf("%$searchQuery%")
         }
 
+        // Dynamic Sorting using ORDER BY
         return db.query(
             FitTrackDatabaseHelper.TABLE_WORKOUT_SESSIONS,
             null,
@@ -63,7 +62,7 @@ class WorkoutRepository(context: Context) {
             selectionArgs,
             null,
             null,
-            "${FitTrackDatabaseHelper.COL_SESSION_ID} DESC"
+            sortBy
         ).use { cursor ->
             buildList {
                 while (cursor.moveToNext()) {
@@ -105,37 +104,13 @@ class WorkoutRepository(context: Context) {
     }
 
     private fun insertSessionInternal(db: android.database.sqlite.SQLiteDatabase, session: WorkoutSession): Long {
-        // Get default user ID (demo_user created during initialization)
-        val defaultUserId = db.rawQuery(
-            "SELECT ${FitTrackDatabaseHelper.COL_USER_ID} FROM ${FitTrackDatabaseHelper.TABLE_USERS} WHERE ${FitTrackDatabaseHelper.COL_USER_USERNAME} = ?",
-            arrayOf("demo_user")
-        ).use { cursor ->
-            if (cursor.moveToFirst()) cursor.getLong(0) else 1L
-        }
-
         val values = ContentValues().apply {
-            put(FitTrackDatabaseHelper.COL_SESSION_USER_ID, defaultUserId)
+            put(FitTrackDatabaseHelper.COL_SESSION_USER_ID, 1) // Default demo user
             put(FitTrackDatabaseHelper.COL_SESSION_DATE, session.date)
             put(FitTrackDatabaseHelper.COL_SESSION_NAME, session.workout)
             put(FitTrackDatabaseHelper.COL_SESSION_DURATION, session.duration)
             put(FitTrackDatabaseHelper.COL_SESSION_VOLUME, session.volumeKg)
         }
         return db.insert(FitTrackDatabaseHelper.TABLE_WORKOUT_SESSIONS, null, values)
-    }
-
-    private fun insertExercise(
-        db: android.database.sqlite.SQLiteDatabase,
-        sessionId: Long,
-        name: String,
-        sets: Int,
-        reps: Int
-    ) {
-        val values = ContentValues().apply {
-            put(FitTrackDatabaseHelper.COL_EXERCISE_SESSION_ID, sessionId)
-            put(FitTrackDatabaseHelper.COL_EXERCISE_NAME, name)
-            put(FitTrackDatabaseHelper.COL_EXERCISE_SETS, sets)
-            put(FitTrackDatabaseHelper.COL_EXERCISE_REPS, reps)
-        }
-        db.insert(FitTrackDatabaseHelper.TABLE_WORKOUT_EXERCISES, null, values)
     }
 }

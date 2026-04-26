@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fittrack.app.R
 import com.fittrack.app.adapters.WorkoutSessionAdapter
 import com.fittrack.app.data.WorkoutRepository
+import com.fittrack.app.data.FitTrackDatabaseHelper
 import com.fittrack.app.models.WorkoutSession
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +32,11 @@ class HistoryFragment : Fragment() {
     private lateinit var etSessionDuration: EditText
     private lateinit var etSessionVolume: EditText
     private lateinit var btnAddSession: Button
+    private lateinit var btnSortDate: Button
+    private lateinit var btnSortVolume: Button
     private lateinit var repository: WorkoutRepository
+    
+    private var currentSortOrder: String = "${FitTrackDatabaseHelper.COL_SESSION_ID} DESC"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -69,30 +74,52 @@ class HistoryFragment : Fragment() {
         )
         recyclerView.adapter = adapter
 
+        // Create Inputs
         etSessionDate = view.findViewById(R.id.etSessionDate)
         etSessionWorkout = view.findViewById(R.id.etSessionWorkout)
         etSessionDuration = view.findViewById(R.id.etSessionDuration)
         etSessionVolume = view.findViewById(R.id.etSessionVolume)
         btnAddSession = view.findViewById(R.id.btnAddSession)
-        btnAddSession.setOnClickListener {
-            createSession()
-        }
+        btnAddSession.setOnClickListener { createSession() }
 
+        // Search
         etSearchWorkout = view.findViewById(R.id.etSearchWorkout)
         btnClearSearch = view.findViewById(R.id.btnClearSearch)
-
         etSearchWorkout.addTextChangedListener { text ->
             loadSessions(text?.toString().orEmpty())
         }
-
         btnClearSearch.setOnClickListener {
             etSearchWorkout.setText("")
             loadSessions("")
         }
 
+        // F5: Dynamic SQL Sorting
+        btnSortDate = view.findViewById(R.id.btnSortDate)
+        btnSortVolume = view.findViewById(R.id.btnSortVolume)
+
+        btnSortDate.setOnClickListener {
+            currentSortOrder = "${FitTrackDatabaseHelper.COL_SESSION_DATE} ASC"
+            loadSessions(etSearchWorkout.text.toString().trim())
+        }
+
+        btnSortVolume.setOnClickListener {
+            // CAST is needed because volume is stored as TEXT in this schema
+            currentSortOrder = "CAST(${FitTrackDatabaseHelper.COL_SESSION_VOLUME} AS INTEGER) DESC"
+            loadSessions(etSearchWorkout.text.toString().trim())
+        }
+
         lifecycleScope.launch {
             withContext(Dispatchers.IO) { repository.seedIfEmpty() }
             loadSessions("")
+        }
+    }
+
+    private fun loadSessions(query: String) {
+        lifecycleScope.launch {
+            val sessions = withContext(Dispatchers.IO) {
+                repository.readSessions(query, currentSortOrder)
+            }
+            adapter.submitList(sessions)
         }
     }
 
@@ -160,15 +187,6 @@ class HistoryFragment : Fragment() {
             }
             .setNegativeButton("Cancel", null)
             .show()
-    }
-
-    private fun loadSessions(query: String) {
-        lifecycleScope.launch {
-            val sessions = withContext(Dispatchers.IO) {
-                repository.readSessions(query)
-            }
-            adapter.submitList(sessions)
-        }
     }
 
     private fun clearCreateInputs() {
