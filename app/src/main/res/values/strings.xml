@@ -38,4 +38,8 @@
     <string name="pr_bench">Bench Press PR: 100 kg</string>
     <string name="pr_squat">Squat PR: 140 kg</string>
     <string name="pr_deadlift">Deadlift PR: 160 kg</string>
+    <string name="hint_edit_date">Date</string>
+    <string name="hint_edit_workout">Workout</string>
+    <string name="hint_edit_duration">Duration</string>
+    <string name="hint_edit_volume">Volume</string>
 </resources>
