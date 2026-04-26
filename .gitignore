@@ -16,4 +16,5 @@ local.properties
 .DS_Store
 Thumbs.db
 
-Agents.md
+F1_F4_IMPLEMENTATION_DETAILS.md
+build.log

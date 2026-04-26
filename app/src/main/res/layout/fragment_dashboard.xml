@@ -206,6 +206,40 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:background="@drawable/bg_card"
+                android:elevation="@dimen/card_elevation"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Live Motivation (API Module)"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvApiMotivation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_sm"
+                    android:text="Loading..."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_sm" />
+
+                <Button
+                    android:id="@+id/btnRefreshMotivation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_sm"
+                    android:text="Refresh API Data" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_sm"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">

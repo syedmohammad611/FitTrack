@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_md"
+    android:layout_marginBottom="@dimen/spacing_md"
+    android:background="@drawable/bg_quote_card"
+    android:elevation="2dp">
+
+    <!-- Quote Text -->
+    <TextView
+        android:id="@+id/tvQuoteText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quote text goes here"
+        android:textSize="@dimen/text_md"
+        android:textStyle="italic"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="@dimen/spacing_sm" />
+
+    <!-- Author -->
+    <TextView
+        android:id="@+id/tvQuoteAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Author Name"
+        android:textSize="@dimen/text_sm"
+        android:textStyle="bold"
+        android:textColor="@color/text_secondary"
+        android:gravity="end" />
+
+</LinearLayout>
+
