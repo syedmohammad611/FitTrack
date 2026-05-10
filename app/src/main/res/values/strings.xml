@@ -42,4 +42,31 @@
     <string name="hint_edit_workout">Workout</string>
     <string name="hint_edit_duration">Duration</string>
     <string name="hint_edit_volume">Volume</string>
+
+    <!-- F1 Google Sign-In: paste the Web client ID until you use a full google-services.json from Firebase (then remove this if Gradle reports duplicate default_web_client_id). -->
+    <string name="default_web_client_id" translatable="false">PASTE_WEB_CLIENT_ID.apps.googleusercontent.com</string>
+
+    <string name="login_subtitle">Sign in with email or Google</string>
+    <string name="register_title">Create account</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="btn_sign_in">Sign in</string>
+    <string name="btn_sign_in_google">Continue with Google</string>
+    <string name="btn_create_account">Create account</string>
+    <string name="btn_logout">Log out</string>
+    <string name="link_create_account">New here? Create an account</string>
+    <string name="toast_registration_success">Account created. You can sign in now.</string>
+    <string name="error_email_required">Enter your email</string>
+    <string name="error_email_invalid">Enter a valid email</string>
+    <string name="error_password_required">Enter your password</string>
+    <string name="error_password_short">Password must be at least 6 characters</string>
+    <string name="error_password_mismatch">Passwords do not match</string>
+    <string name="error_auth_generic">Authentication failed</string>
+    <string name="error_google_no_token">Could not get Google credentials. Check Web client ID in strings.xml.</string>
+    <string name="error_google_failed">Google sign-in was cancelled or failed</string>
+    <string name="error_configure_web_client_id">Set default_web_client_id in strings.xml using your Firebase Web client ID.</string>
+    <string name="error_not_signed_in">You must be signed in to view workout history.</string>
+    <string name="error_firestore_listen">Could not sync workouts: %1$s</string>
+    <string name="error_missing_firestore_id">This session is missing cloud data.</string>
 </resources>

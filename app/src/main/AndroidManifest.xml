@@ -28,6 +28,10 @@
             android:name="com.fittrack.app.activities.MainActivity"
             android:exported="false" />
 
+        <activity
+            android:name="com.fittrack.app.activities.RegisterActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -19,9 +19,9 @@ class WorkoutRepository(context: Context) {
                 cursor.getInt(0)
             }
             if (count == 0) {
-                insertSessionInternal(db, WorkoutSession(0, "Jun 4", "Push Day - Chest", "55m", "3200"))
-                insertSessionInternal(db, WorkoutSession(0, "Jun 5", "Pull Day - Back", "60m", "2800"))
-                insertSessionInternal(db, WorkoutSession(0, "Jun 6", "Leg Day - Quads", "70m", "4500"))
+                insertSessionInternal(db, WorkoutSession(0, null, "Jun 4", "Push Day - Chest", "55m", "3200"))
+                insertSessionInternal(db, WorkoutSession(0, null, "Jun 5", "Pull Day - Back", "60m", "2800"))
+                insertSessionInternal(db, WorkoutSession(0, null, "Jun 6", "Leg Day - Quads", "70m", "4500"))
             }
             db.setTransactionSuccessful()
         } finally {
@@ -69,10 +69,11 @@ class WorkoutRepository(context: Context) {
                     add(
                         WorkoutSession(
                             id = cursor.getLong(cursor.getColumnIndexOrThrow(FitTrackDatabaseHelper.COL_SESSION_ID)),
+                            firestoreId = null,
                             date = cursor.getString(cursor.getColumnIndexOrThrow(FitTrackDatabaseHelper.COL_SESSION_DATE)),
                             workout = cursor.getString(cursor.getColumnIndexOrThrow(FitTrackDatabaseHelper.COL_SESSION_NAME)),
                             duration = cursor.getString(cursor.getColumnIndexOrThrow(FitTrackDatabaseHelper.COL_SESSION_DURATION)),
-                            volumeKg = cursor.getString(cursor.getColumnIndexOrThrow(FitTrackDatabaseHelper.COL_SESSION_VOLUME))
+                            volumeKg = cursor.getString(cursor.getColumnIndexOrThrow(FitTrackDatabaseHelper.COL_SESSION_VOLUME)),
                         )
                     )
                 }

@@ -15,10 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fittrack.app.R
 import com.fittrack.app.adapters.WorkoutSessionAdapter
-import com.fittrack.app.data.WorkoutRepository
-import com.fittrack.app.data.FitTrackDatabaseHelper
+import com.fittrack.app.data.FirestoreWorkoutRepository
 import com.fittrack.app.models.WorkoutSession
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -34,14 +35,25 @@ class HistoryFragment : Fragment() {
     private lateinit var btnAddSession: Button
     private lateinit var btnSortDate: Button
     private lateinit var btnSortVolume: Button
-    private lateinit var repository: WorkoutRepository
-    
-    private var currentSortOrder: String = "${FitTrackDatabaseHelper.COL_SESSION_ID} DESC"
+
+    private val firestoreWorkouts = FirestoreWorkoutRepository()
+    private var snapshotRegistration: ListenerRegistration? = null
+
+    /** Latest server-backed list; UI applies search/sort in memory (F2 real-time updates). */
+    private var latestSessions: List<WorkoutSession> = emptyList()
+
+    private var sortMode: SortMode = SortMode.DEFAULT
+
+    private enum class SortMode {
+        DEFAULT,
+        DATE_ASC,
+        VOLUME_DESC,
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
@@ -52,7 +64,11 @@ class HistoryFragment : Fragment() {
         val username = arguments?.getString(ARG_USERNAME) ?: "User"
         view.findViewById<TextView>(R.id.tvHistoryTitle).text = "$username's Workout History"
 
-        repository = WorkoutRepository(requireContext())
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        if (uid == null) {
+            Toast.makeText(requireContext(), R.string.error_not_signed_in, Toast.LENGTH_LONG).show()
+            return
+        }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.rvHistory)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -66,64 +82,86 @@ class HistoryFragment : Fragment() {
                     .commit()
             },
             onEditClick = { session ->
-                showEditDialog(session)
+                showEditDialog(uid, session)
             },
             onDeleteClick = { session ->
-                deleteSession(session)
-            }
+                deleteSession(uid, session)
+            },
         )
         recyclerView.adapter = adapter
 
-        // Create Inputs
         etSessionDate = view.findViewById(R.id.etSessionDate)
         etSessionWorkout = view.findViewById(R.id.etSessionWorkout)
         etSessionDuration = view.findViewById(R.id.etSessionDuration)
         etSessionVolume = view.findViewById(R.id.etSessionVolume)
         btnAddSession = view.findViewById(R.id.btnAddSession)
-        btnAddSession.setOnClickListener { createSession() }
+        btnAddSession.setOnClickListener { createSession(uid) }
 
-        // Search
         etSearchWorkout = view.findViewById(R.id.etSearchWorkout)
         btnClearSearch = view.findViewById(R.id.btnClearSearch)
-        etSearchWorkout.addTextChangedListener { text ->
-            loadSessions(text?.toString().orEmpty())
+        etSearchWorkout.addTextChangedListener { _ ->
+            applyFilterAndSort()
         }
         btnClearSearch.setOnClickListener {
             etSearchWorkout.setText("")
-            loadSessions("")
+            applyFilterAndSort()
         }
 
-        // F5: Dynamic SQL Sorting
         btnSortDate = view.findViewById(R.id.btnSortDate)
         btnSortVolume = view.findViewById(R.id.btnSortVolume)
 
         btnSortDate.setOnClickListener {
-            currentSortOrder = "${FitTrackDatabaseHelper.COL_SESSION_DATE} ASC"
-            loadSessions(etSearchWorkout.text.toString().trim())
+            sortMode = SortMode.DATE_ASC
+            applyFilterAndSort()
         }
 
         btnSortVolume.setOnClickListener {
-            // CAST is needed because volume is stored as TEXT in this schema
-            currentSortOrder = "CAST(${FitTrackDatabaseHelper.COL_SESSION_VOLUME} AS INTEGER) DESC"
-            loadSessions(etSearchWorkout.text.toString().trim())
+            sortMode = SortMode.VOLUME_DESC
+            applyFilterAndSort()
         }
 
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) { repository.seedIfEmpty() }
-            loadSessions("")
-        }
+        snapshotRegistration?.remove()
+        snapshotRegistration = firestoreWorkouts.observeWorkoutSessions(
+            uid = uid,
+            onUpdate = { sessions ->
+                viewLifecycleOwner.lifecycleScope.launch {
+                    latestSessions = sessions
+                    applyFilterAndSort()
+                }
+            },
+            onError = { e ->
+                viewLifecycleOwner.lifecycleScope.launch {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.error_firestore_listen, e.message ?: e.javaClass.simpleName),
+                        Toast.LENGTH_LONG,
+                    ).show()
+                }
+            },
+        )
     }
 
-    private fun loadSessions(query: String) {
-        lifecycleScope.launch {
-            val sessions = withContext(Dispatchers.IO) {
-                repository.readSessions(query, currentSortOrder)
-            }
-            adapter.submitList(sessions)
-        }
+    override fun onDestroyView() {
+        snapshotRegistration?.remove()
+        snapshotRegistration = null
+        super.onDestroyView()
     }
 
-    private fun createSession() {
+    private fun applyFilterAndSort() {
+        val q = etSearchWorkout.text.toString().trim()
+        var list = latestSessions.toList()
+        if (q.isNotEmpty()) {
+            list = list.filter { it.workout.contains(q, ignoreCase = true) }
+        }
+        list = when (sortMode) {
+            SortMode.DATE_ASC -> list.sortedBy { it.date }
+            SortMode.VOLUME_DESC -> list.sortedByDescending { it.volumeKg.toIntOrNull() ?: 0 }
+            SortMode.DEFAULT -> list
+        }
+        adapter.submitList(list)
+    }
+
+    private fun createSession(uid: String) {
         val date = etSessionDate.text.toString().trim()
         val workout = etSessionWorkout.text.toString().trim()
         val duration = etSessionDuration.text.toString().trim()
@@ -138,26 +176,43 @@ class HistoryFragment : Fragment() {
             date = date,
             workout = workout,
             duration = duration,
-            volumeKg = volume
+            volumeKg = volume,
         )
 
         lifecycleScope.launch {
-            withContext(Dispatchers.IO) { repository.createSession(session) }
-            clearCreateInputs()
-            loadSessions(etSearchWorkout.text.toString().trim())
-            Toast.makeText(requireContext(), "Session created.", Toast.LENGTH_SHORT).show()
+            try {
+                withContext(Dispatchers.IO) { firestoreWorkouts.addSession(uid, session) }
+                clearCreateInputs()
+                Toast.makeText(requireContext(), "Session created.", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), e.message ?: "Failed to save.", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
-    private fun deleteSession(session: WorkoutSession) {
+    private fun deleteSession(uid: String, session: WorkoutSession) {
+        val docId = session.firestoreId
+        if (docId.isNullOrBlank()) {
+            Toast.makeText(requireContext(), R.string.error_missing_firestore_id, Toast.LENGTH_SHORT).show()
+            return
+        }
         lifecycleScope.launch {
-            withContext(Dispatchers.IO) { repository.deleteSession(session.id) }
-            loadSessions(etSearchWorkout.text.toString().trim())
-            Toast.makeText(requireContext(), "Session deleted.", Toast.LENGTH_SHORT).show()
+            try {
+                withContext(Dispatchers.IO) { firestoreWorkouts.deleteSession(uid, docId) }
+                Toast.makeText(requireContext(), "Session deleted.", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), e.message ?: "Delete failed.", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
-    private fun showEditDialog(session: WorkoutSession) {
+    private fun showEditDialog(uid: String, session: WorkoutSession) {
+        val docId = session.firestoreId
+        if (docId.isNullOrBlank()) {
+            Toast.makeText(requireContext(), R.string.error_missing_firestore_id, Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val editView = layoutInflater.inflate(R.layout.dialog_edit_session, null)
         val etDate = editView.findViewById<EditText>(R.id.etEditDate)
         val etWorkout = editView.findViewById<EditText>(R.id.etEditWorkout)
@@ -177,12 +232,16 @@ class HistoryFragment : Fragment() {
                     date = etDate.text.toString().trim(),
                     workout = etWorkout.text.toString().trim(),
                     duration = etDuration.text.toString().trim(),
-                    volumeKg = etVolume.text.toString().trim()
+                    volumeKg = etVolume.text.toString().trim(),
+                    firestoreId = docId,
                 )
                 lifecycleScope.launch {
-                    withContext(Dispatchers.IO) { repository.updateSession(updated) }
-                    loadSessions(etSearchWorkout.text.toString().trim())
-                    Toast.makeText(requireContext(), "Session updated.", Toast.LENGTH_SHORT).show()
+                    try {
+                        withContext(Dispatchers.IO) { firestoreWorkouts.updateSession(uid, updated) }
+                        Toast.makeText(requireContext(), "Session updated.", Toast.LENGTH_SHORT).show()
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), e.message ?: "Update failed.", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
             .setNegativeButton("Cancel", null)

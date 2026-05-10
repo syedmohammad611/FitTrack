@@ -1,0 +1,147 @@
+================================================================================
+FitTrack — Software for Mobile and Devices — Assignment #5
+Submission report (Firebase cloud integration)
+================================================================================
+
+1. Project overview
+--------------------------------------------------------------------------------
+FitTrack is an Android (Kotlin) fitness app for logging workouts, browsing
+history, and loading motivation content. Assignment #5 extends the existing
+Assignment #03/04 codebase with Firebase Authentication, Cloud Firestore with
+real-time synchronization, and collaborative GitHub workflow as required by
+the brief.
+
+Repository: https://github.com/syedmohammad611/FitTrack
+Firebase project: maidah (Project ID: maidah-8b1f5)
+
+
+2. Functional requirement F1 — Firebase Authentication
+--------------------------------------------------------------------------------
+Objective: Integrate Firebase Authentication with at least two sign-in methods,
+persistent sessions across restarts, and clear login, registration, and logout
+flows.
+
+Implementation summary:
+- Email/password: users sign in on LoginActivity; new accounts are created on
+  RegisterActivity. Operations use the official Firebase Auth Android SDK with
+  Kotlin coroutines (kotlinx-coroutines-play-services) so network work does not
+  block the UI thread.
+- Google Sign-In: GoogleSignIn obtains an ID token; AuthRepository.signInWithGoogle
+  exchanges it for a Firebase credential (GoogleAuthProvider) and signs the user
+  into Firebase Auth.
+- Session persistence: Firebase Auth persists the user session by default; on
+  cold start, LoginActivity forwards authenticated users to MainActivity.
+- Logout: ProfileFragment signs out of Firebase Auth and the Google client,
+  clears the back stack to LoginActivity, and finishes MainActivity.
+
+Primary types:
+- com.fittrack.app.data.AuthRepository — email/password, Google token exchange,
+  signOut, GoogleSignInOptions factory.
+- com.fittrack.app.activities.LoginActivity — email login, Google button,
+  navigation to registration.
+- com.fittrack.app.activities.RegisterActivity — validation and account creation.
+- com.fittrack.app.activities.MainActivity — guards routes: unauthenticated users
+  are redirected to LoginActivity.
+- com.fittrack.app.fragments.ProfileFragment — logout control.
+
+Configuration:
+- Google Services Gradle plugin and app/google-services.json (download from the
+  Firebase console for package com.fittrack.app).
+- strings.xml default_web_client_id: Web client ID for Google Sign-In (or rely
+  on generated values if the downloaded google-services.json already defines
+  default_web_client_id; remove duplicate string resources if Gradle reports a
+  merge conflict).
+- Firebase Console: enable Email/Password and Google providers; register the
+  Android app SHA-1/SHA-256 fingerprints for Google Sign-In.
+
+
+3. Functional requirement F2 — Cloud Firestore and real-time sync
+--------------------------------------------------------------------------------
+Objective: Extend the data layer with Firebase Firestore (official SDK only),
+real-time synchronization across devices, and at least two logically related
+collections (or collection + subcollection).
+
+Data model (relationship):
+- Collection: user_profiles
+  Document ID: Firebase Auth UID
+  Fields: displayName, email, updatedAt (server timestamp on upsert)
+- Subcollection: user_profiles/{uid}/workout_sessions
+  Document ID: auto-generated
+  Fields: date, workout, duration, volumeKg, updatedAt (server timestamp)
+
+The profile document is the parent entity; each workout session document belongs
+to exactly one authenticated user via path nesting. This mirrors a relational
+“user owns many sessions” association.
+
+Real-time behavior:
+- HistoryFragment registers a Firestore snapshot listener on the current user’s
+  workout_sessions subcollection. Any create/update/delete—whether performed on
+  this device or another device signed into the same account—updates the local
+  RecyclerView without a manual refresh.
+
+Write path:
+- MainActivity launches a coroutine to merge the signed-in user into user_profiles
+  (ensureUserProfile) so the parent document exists before history sync.
+- Adding, editing, or deleting sessions uses suspend functions with Task.await()
+  on a background dispatcher.
+
+Primary types:
+- com.fittrack.app.data.FirestoreUserProfileRepository — upsert user_profiles.
+- com.fittrack.app.data.FirestoreWorkoutRepository — observeWorkoutSessions,
+  addSession, updateSession, deleteSession.
+
+Security:
+- firestore.rules in the repository documents owner-only access: authenticated
+  uid must match user_profiles/{userId} for both the profile and nested sessions.
+  Deploy these rules in the Firebase console (Firestore → Rules) for production
+  testing.
+
+Note: SQLite helpers remain in the project for earlier assignment features, but
+workout history in the main flow is driven by Firestore while the user is
+authenticated with Firebase.
+
+
+4. Threading and constraints
+--------------------------------------------------------------------------------
+- Firebase Auth and Firestore tasks are bridged with Kotlin coroutines or
+  listeners; the UI is updated on the main thread via lifecycle scopes.
+- No direct REST calls to Firebase endpoints; only official SDK modules
+  (firebase-auth, firebase-firestore) are used.
+
+
+5. GitHub collaboration
+--------------------------------------------------------------------------------
+- Work is maintained on the group repository with feature-focused branches and
+  pull requests as required by the assignment rubric.
+- Commits are descriptive and map to Firebase Authentication (F1), Firestore
+  sync (F2), and related configuration.
+
+
+6. Testing performed
+--------------------------------------------------------------------------------
+- Manual: register and sign in with email; sign in with Google; kill and relaunch
+  the app to confirm session persistence; log out from the profile screen.
+- Manual (two devices or emulator + device): sign in as the same user on both;
+  add or edit a workout on one device and confirm the History screen updates on
+  the other in real time.
+- Build: assembleDebug / run from Android Studio after placing the real
+  google-services.json and enabling Firestore with deployed rules.
+
+
+7. Known setup checklist before demo
+--------------------------------------------------------------------------------
+1) Replace app/google-services.json with the file from Firebase for
+   com.fittrack.app.
+2) Authentication: enable Email/Password and Google; add app signing
+   certificates.
+3) Firestore: create database; deploy firestore.rules from this repo.
+4) strings.xml: set default_web_client_id if not supplied by google-services.json.
+
+
+8. Team / contribution note
+--------------------------------------------------------------------------------
+Implementation and documentation prepared for academic submission; logic map and
+presentation materials should reference the class and file names listed above
+for traceability to requirements F1 and F2.
+
+================================================================================

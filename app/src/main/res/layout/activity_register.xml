@@ -15,22 +15,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="FitTrack"
+            android:layout_marginBottom="24dp"
+            android:text="@string/register_title"
             android:textColor="@color/primary"
-            android:textSize="32sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/login_subtitle"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp" />
-
         <EditText
-            android:id="@+id/etEmail"
+            android:id="@+id/etRegisterEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="emailAddress"
@@ -40,7 +32,7 @@
             android:padding="12dp" />
 
         <EditText
-            android:id="@+id/etPassword"
+            android:id="@+id/etRegisterPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -50,39 +42,24 @@
             android:inputType="textPassword"
             android:padding="12dp" />
 
-        <ProgressBar
-            android:id="@+id/progressLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/btnLoginEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/primary"
-            android:text="@string/btn_sign_in"
-            android:textColor="@color/text_on_primary" />
-
-        <Button
-            android:id="@+id/btnGoogleSignIn"
+        <EditText
+            android:id="@+id/etRegisterConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:backgroundTint="@color/surface"
-            android:text="@string/btn_sign_in_google"
-            android:textColor="@color/text_primary" />
+            android:autofillHints="password"
+            android:background="@drawable/bg_card"
+            android:hint="@string/hint_confirm_password"
+            android:inputType="textPassword"
+            android:padding="12dp" />
 
-        <TextView
-            android:id="@+id/tvGoRegister"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnRegisterSubmit"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:padding="8dp"
-            android:text="@string/link_create_account"
-            android:textColor="@color/primary"
-            android:textSize="15sp" />
+            android:backgroundTint="@color/primary"
+            android:text="@string/btn_create_account"
+            android:textColor="@color/text_on_primary" />
     </LinearLayout>
 </ScrollView>

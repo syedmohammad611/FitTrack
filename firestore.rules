@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // F2: user_profiles/{uid} and nested workout_sessions — only the signed-in owner may read/write.
+    match /user_profiles/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      match /workout_sessions/{sessionId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+}
